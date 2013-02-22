@@ -175,7 +175,7 @@ class PostsController < ApplicationController
             file = Tempfile.new([basename, extname])
             file.binmode
 
-            open(URI.parse(url)) do |data|
+            open(URI.parse(URI.encode(img['src'].strip))) do |data|
               file.write data.read
             end
 
