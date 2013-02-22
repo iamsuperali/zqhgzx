@@ -1,0 +1,16 @@
+<h3><%= @user.real_name %>签到记录</h3>
+<table class="admin">
+  <tr>
+    <th>签到时间</th>
+    <th>签到ip</th>
+  </tr>
+
+  <% @login_logs.each do |l| %>
+    <tr>
+      <th scope="row"class="spec period-first-col"><%= l.created_at.strftime("%y-%m-%d %I:%M%p") %></th>
+      <td><%= l.ip %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @login_logs,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination"  %>

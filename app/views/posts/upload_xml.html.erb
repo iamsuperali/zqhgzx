@@ -1,0 +1,8 @@
+<%=form_tag "/posts/import",:multipart => true %>
+  <%=file_field_tag :xml_file%>
+  分类：
+  <select id="category_id" name="category_id">
+    <%=cate_list(0)%>
+  </select>
+  <%=submit_tag "确定"%>
+</form>

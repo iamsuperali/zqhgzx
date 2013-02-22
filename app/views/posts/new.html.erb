@@ -1,0 +1,12 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#post_category_id").chained("#parent_category");
+  });
+</script>
+
+
+<h1>新增文章</h1>
+
+<%= render 'form' %>
+
+<%= link_to '后退', posts_path %>

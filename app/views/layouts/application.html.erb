@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>肇庆市黄岗中学</title>
+    <%= javascript_include_tag :application %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <meta name="description" content="肇庆市黄岗中学 主页" />
+    <meta name="keywords" content="肇庆，黄岗中学，教育" />
+    <link rel="canonical" href="http://www.zqhgzx.com" />
+  </head>
+
+  <body class="home blog">
+    <div id="page-wrap">
+      <div id="banner">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="985" height="285">
+          <param name="movie" value="http://www.zqhgzx.com/wp-content/themes/hzportal/sunshine.swf" />
+          <param name="quality" value="high" />
+          <param name="wmode" value="opaque" />
+          <embed src="http://www.zqhgzx.com/wp-content/themes/hzportal/sunshine.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="985" height="285" wmode="opaque"></embed>
+        </object>
+      </div>
+      <div id="nav-wrapper">
+        <%=render_navigation :expand_all => true%>
+      </div>
+      <div id="bread-crumb">
+        <%if params[:controller] == "posts" && params[:action]=="show" && @post %>
+          您的位置：<%=link_to @post.category.name,url_for(@post.category)%>
+          &gt;&nbsp;<%=@post.title%>
+        <%else %>
+          <ul id="nav">
+            <%=render_navigation :renderer => :breadcrumbs, :join_with => " &gt; ",:prefix =>"您的位置："%>
+          </ul>
+        <%end%>
+      </div>
+
+      <div id="content-wrapper" class="group">
+
+
+        <div id="sidebar-wrapper">
+          <ul id="sidebar">
+            <li id="categoryposts-2" class="widget-container widget_categoryposts"><h3 class="widget-title">校园公告</h3>
+              <ul>
+                <%= render :partial =>"/home/sidebar_posts_item",:collection=>Post.where(:category_id => 2).limit(5),:as => :item%>
+              </ul>    
+            </li>
+
+            <li id="search-2" class="widget-container widget_search">
+              <%=form_tag "/home/search",:id=>"searchform",:method=>"get" do |f|%>
+                <div><label class="screen-reader-text" for="s">搜索：</label>
+                  <%=search_field_tag :keyword %>
+                  <%=submit_tag "搜索",:id=>"searchsubmit" %>
+                </div>
+              <%end%>
+            </li>
+
+            <li class="widget-container widget_wp_sidebarlogin">
+              <h3 class="widget-title sidebar-title"><span>本周热门</span></h3>
+              <ul class='xoxo blogroll'>
+                <% my_hot_posts = hot_posts %>
+                <% if my_hot_posts && my_hot_posts.length > 0 %>
+                  <% my_hot_posts.each do |p| %>
+                    <li class="cat-post-item">
+                      <%=link_to p.title,p %>
+                    </li>
+                  <% end %>
+                <%end%>
+              </ul>
+            </li>
+
+
+
+            <li id="wp_sidebarlogin-3" class="widget-container widget_wp_sidebarlogin">
+              <h3 class="widget-title"><span>登录</span></h3>
+              <ul class='xoxo blogroll'>
+                <%= render "/devise/sessions/login_form" %>
+              </ul>
+            </li>
+
+            <li class="widget-container widget_wp_sidebarlogin">
+              <h3 class="widget-title sidebar-title"><span>学校荣誉</span></h3>
+              <ul class='xoxo blogroll'>
+                <% posts_36 = get_posts(36) %>
+                <% if posts_36 && posts_36.length > 0 %>
+                  <% get_posts(36).each do |p| %>
+                    <li class="cat-post-item">
+                      <%=link_to p.title,p %>
+                    </li>
+                  <% end %>
+                <%end%>
+              </ul>
+            </li>
+
+
+            <li id="linkcat-2" class="widget-container widget_links"><h3 class="widget-title">链接表</h3>
+              <ul class='xoxo blogroll'>
+                <%= render :partial =>"/home/links",:collection=>Link.limit(10),:as => :item%>
+              </ul>
+            </li>
+
+            <li class="widget-container widget_wp_sidebarlogin">
+              <h3 class="widget-title sidebar-title"><span>网站信息</span></h3>
+              <ul class='xoxo blogroll' id="website-info">
+                <li>文章统计：<%=Post.count(:all)%></li>
+                <li>会员统计：<%=User.count(:all)%></li>
+                <li>分类统计：<%=Category.count(:all)%></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+
+        <div id="main-content" class="group">
+          <p id="notice"><%= notice %></p>
+          <%= yield %>
+        </div>
+
+      </div>
+
+
+      <div id="content-bottom"></div>
+
+      <div id="fbar">
+        <ul id="cate-list-resource">
+          <li class="categories"><h3>教学资源</h3><ul>	<li class="cat-item cat-item-10"><a href="http://www.zqhgzx.com/?cat=10" title="查看 语文 下的所有文章">语文</a>
+              </li>
+              <li class="cat-item cat-item-17"><a href="http://www.zqhgzx.com/?cat=17" title="查看 数学 下的所有文章">数学</a>
+              </li>
+              <li class="cat-item cat-item-19"><a href="http://www.zqhgzx.com/?cat=19" title="查看 英语 下的所有文章">英语</a>
+              </li>
+              <li class="cat-item cat-item-25"><a href="http://www.zqhgzx.com/?cat=25" title="查看 物理 下的所有文章">物理</a>
+              </li>
+              <li class="cat-item cat-item-30"><a href="http://www.zqhgzx.com/?cat=30" title="查看 化学 下的所有文章">化学</a>
+              </li>
+              <li class="cat-item cat-item-40"><a href="http://www.zqhgzx.com/?cat=40" title="查看 生物 下的所有文章">生物</a>
+              </li>
+              <li class="cat-item cat-item-42"><a href="http://www.zqhgzx.com/?cat=42" title="查看 地理 下的所有文章">地理</a>
+              </li>
+              <li class="cat-item cat-item-46"><a href="http://www.zqhgzx.com/?cat=46" title="查看 政治 下的所有文章">政治</a>
+              </li>
+              <li class="cat-item cat-item-54"><a href="http://www.zqhgzx.com/?cat=54" title="查看 历史 下的所有文章">历史</a>
+              </li>
+            </ul></li>    </ul>
+        <ul id="cate-list-grade">
+          <li class="categories"><h3>级组管理</h3><ul>	<li class="cat-item cat-item-35"><a href="http://www.zqhgzx.com/?cat=35" title="查看 七年级 下的所有文章">七年级</a>
+              </li>
+              <li class="cat-item cat-item-37"><a href="http://www.zqhgzx.com/?cat=37" title="查看 八年级 下的所有文章">八年级</a>
+              </li>
+              <li class="cat-item cat-item-39"><a href="http://www.zqhgzx.com/?cat=39" title="查看 九年级 下的所有文章">九年级</a>
+              </li>
+            </ul></li>    </ul>
+        <ul id="cate-list-league">
+          <li class="categories"><h3>社团组织</h3><ul>	<li class="cat-item cat-item-33"><a href="http://www.zqhgzx.com/?cat=33" title="查看 音乐美术部 下的所有文章">音乐美术部</a>
+              </li>
+              <li class="cat-item cat-item-38"><a href="http://www.zqhgzx.com/?cat=38" title="查看 体育俱乐部 下的所有文章">体育俱乐部</a>
+              </li>
+              <li class="cat-item cat-item-75"><a href="http://www.zqhgzx.com/?cat=75" title="查看 科普小组 下的所有文章">科普小组</a>
+              </li>
+            </ul></li>    </ul>
+        <ul id="cate-list-administrative">
+          <li class="categories"><h3>行政管理</h3><ul>	<li class="cat-item cat-item-44"><a href="http://www.zqhgzx.com/?cat=44" title="查看 团委 下的所有文章">团委</a>
+              </li>
+              <li class="cat-item cat-item-53"><a href="http://www.zqhgzx.com/?cat=53" title="查看 总务处 下的所有文章">总务处</a>
+              </li>
+              <li class="cat-item cat-item-57"><a href="http://www.zqhgzx.com/?cat=57" title="查看 教务处 下的所有文章">教务处</a>
+              </li>
+              <li class="cat-item cat-item-65"><a href="http://www.zqhgzx.com/?cat=65" title="查看 校长室 下的所有文章">校长室</a>
+              </li>
+              <li class="cat-item cat-item-76"><a href="http://www.zqhgzx.com/?cat=76" title="查看 德育处 下的所有文章">德育处</a>
+              </li>
+            </ul></li>    </ul>
+      </div>
+      <div id="footer">
+        <div id="copyright">
+          Copyright © 2012 www.zqhgzx.com 版权所有
+        </div>
+        <div id="powerby">
+          <span>技术支持：</span><span class="supertone">肇庆市端州区洲佰通科技有限公司 </span><span>电话：0758-6168899 </span><span>邮箱：supertone@126.com</span>
+        </div>
+        <div>
+          <script src="http://s15.cnzz.com/stat.php?id=4149859&web_id=4149859&online=1&show=line" language="JavaScript"></script>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

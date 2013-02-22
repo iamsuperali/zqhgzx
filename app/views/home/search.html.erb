@@ -1,0 +1,20 @@
+<%if @posts && @posts.length > 0%>
+  <ul id="posts-list" class="widget widget-full group">
+    <li>
+      <h3>搜索结果:</h3>
+      <ul>
+        <%@posts.each do |p|%>
+          <li>
+            <%=link_to p.title,p,:class=>"entry-title"%>
+            <span class="post-date"><%p.created_at.strftime("%y-%m-%d")%></span>
+          </li>
+        <%end%>
+      </ul>
+    </li>
+  </ul>
+
+  <%= will_paginate @posts,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination" %>
+<%else%>
+
+<%end%>
+

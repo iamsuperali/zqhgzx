@@ -1,0 +1,32 @@
+//= require jquery
+//= require jquery_ujs
+//= require text_cut
+//= require jquery-fileupload
+//= require_tree ./admin
+//= require ckeditor/init
+$(document).ready(function(){
+  $("#menu").menu();
+});
+
+CKEDITOR.on( 'dialogDefinition', function( ev )
+   {
+      // Take the dialog name and its definition from the event data.
+      var dialogName = ev.data.name;
+      var dialogDefinition = ev.data.definition;
+ 
+      // Check if the definition is from the dialog we're
+      // interested in (the 'image' dialog).
+      if ( dialogName == 'image' || dialogName == 'link' || dialogName == 'flash' )
+      {
+         // Remove the 'Target' and 'Advanced' tabs from the 'Link' dialog.
+         dialogDefinition.removeContents( 'upload' );
+         dialogDefinition.removeContents( 'Upload' );
+      }
+   });
+   
+   $(document).ready(function(){
+    if ($("#notice").html().length > 0){
+        $("#notice").fadeIn("slow");
+        $("#notice").fadeOut(5000);
+    }
+});

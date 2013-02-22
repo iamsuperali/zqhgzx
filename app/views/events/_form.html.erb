@@ -1,0 +1,55 @@
+<script type="text/javascript" >
+  $(function() {
+    $( "#event_start_at" ).datepicker();
+    $( "#event_end_at" ).datepicker();
+  });
+</script>
+
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id,"教职工姓名" %>
+    <%= collection_select(:event, :user_id, User.staff.all, :id, :real_name) %>
+  </div>
+  <div class="field">
+    <%= f.label :cate,"考勤类别" %>
+    <%= f.select(:cate,event_cate_list) %>
+  </div>
+  <div class="field">
+    <%= f.label :start_at,"起始时间" %>
+    <%= f.text_field :start_at %>
+    第<%= f.select :start_node,Array.new(12) {|i| i+1 } %>节
+  </div>
+  <div class="field">
+    <%= f.label :end_at, "终止时间" %>
+    <%= f.text_field :end_at %>
+    第<%= f.select :end_node,Array.new(12) {|i| i+1 } %>节
+  </div>
+
+  <div class="field">
+    <%= f.label :created_by, "记录人" %>
+    <%= collection_select(:event, :created_by, User.staff.all, :id, :real_name) %>
+  </div>
+  <div class="field">
+    <%= f.label :approved_by, "审批" %>
+    <%= collection_select(:event, :approved_by, User.administrative.all, :id, :real_name) %>
+  </div>
+  <div class="field">
+    <%= f.label :remark,"说明" %>
+    <%= f.text_field :remark %>
+  </div>
+  <div class="actions">
+    <%= f.submit "确定" %>
+  </div>
+<% end %>

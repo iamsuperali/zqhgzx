@@ -1,0 +1,39 @@
+<% if @post %>
+  <div id="single-post" class="group">
+    <h3><%=@post.title%></h3>
+    <div id="post-meta">
+      <% if can? :update, @post %>
+        <%= link_to "修改", edit_post_path(@post) %> | 
+      <% end %>
+      分类:<%=link_to @post.category.name,@post.category%> |
+      发表时间:<%=@post.created_at.strftime("%y-%m-%d %I:%M%p")%> |
+      作者:<%=@post.author%>
+    </div>
+    <div id="post-content">
+      <%=@post.content.html_safe%>
+
+      <div id="post-uploads">
+        <%if @uploads.length > 0%>
+          <% @uploads.each do |u| %>
+            <%url_string = %>
+            <a href="<%=u.upload.url(:content)%>" target="_blank">
+              <img class="shadow" src="<%=u.upload.url(:medium)%>" alt="" />
+            </a>
+          <%end%>
+        <% end %>
+      </div> 
+    </div>
+
+  </div>
+  <div id="post-links">
+    <%if @next_post %>
+      <%=link_to "下一篇：#{@next_post.title}",@next_post,:id=>"next-post",:class=>"textcut24"%>
+    <%end%>
+
+    <%if @pre_post %>
+      <%=link_to "上一篇：#{@pre_post.title}",@pre_post,:id=>"pre-post",:class=>"textcut24"%>
+    <%end%>
+  </div>
+<%end%>
+
+

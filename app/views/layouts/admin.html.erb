@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>肇庆市黄岗中学门户网站 - 管理后台</title>
+    <%= stylesheet_link_tag    "admin" %>
+    <%= javascript_include_tag "admin" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="tree-container">
+      <ul id="menu">
+        <li><a id="home-link" href="/">首页</a></li>
+        <% if current_user %>
+          <li><a id="posts-link" href="/posts">文章管理</a>
+            <ul>
+              <li><a href="/posts/new">新增文章</a></li>
+              <li><a href="/posts">我的文章</a></li>
+              <li><a href="/posts/wait_for_be_approved">文章审批</a></li>
+              <li><a href="/posts/period">文章统计</a></li>
+            </ul>
+          </li>
+          <li><a id="users-link" href="/users">账号管理</a>
+            <ul>
+              <li><a href="/users/new">新增账号</a></li>
+              <li><a href="/users">账号列表</a></li>
+              <li><a href="/users?approved=false">账号审批</a></li>
+            </ul>
+          </li>
+
+          <li><a  id="events-link" href="/events">考勤管理</a>
+            <ul>
+              <li><a href="/events/new">新增考勤记录</a></li>
+              <li><a href="/events">考勤查询</a></li>
+            </ul>
+          </li>
+
+          <li><a id="links-link" href="/links">友情链接管理</a></li>
+
+
+          <li>
+            <%= link_to "修改密码", edit_user_registration_path,:id=>"pwd_link"  %>
+          </li>
+          <% unless current_user.sign? %>
+            <li>
+              <%= link_to "签到","/users/#{current_user.id}/sign", :method => :post,:id=>"sign_link"  %>
+            </li> 
+          <% end %>
+
+          <li>
+            <%= link_to "退出登陆", destroy_user_session_path, :method => :delete,:id=>"logout_link" %>
+          </li>
+
+        <%end%>
+      </ul>
+
+    </div>
+
+    <div id="main-content">
+      <div id="admin-banner">
+        <img src="<%=asset_path "admin/hgzx.png"%>" />
+      </div>
+      <div id="notice"><%= notice.html_safe if notice %></div>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+
+    <div id="footer">
+      <div>
+        <span><a href="/">返回首页</a></span><span>技术支持：肇庆市端州区洲佰通科技有限公司</span>   <span>电话：0758-6168899</span>    <span>邮箱：supertone@126.com</span>
+      </div>
+      <%=image_tag "supertone.png"%>
+    </div>
+
+  </body>
+</html>

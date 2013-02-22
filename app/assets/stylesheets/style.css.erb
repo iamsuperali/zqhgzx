@@ -1,0 +1,606 @@
+@charset "utf-8";
+/*
+Theme Name: 黄岗中学
+Theme URI: http://wordpress.org/
+Description:
+Author: 洲佰通
+Author URI: http://www.bosskids.org
+Version: 1.0
+License: GNU General Public License
+License URI: license.txt
+Tags:
+*/
+
+
+body{margin:0;padding:0 0 12px 0;font-size:12px;line-height:22px;font-family:"宋体","Arial Narrow",HELVETICA;background:#fff;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
+.tc{text-align:center;}.tl{text-align:left;}.tr{text-align:right;}.dis{display:block;}.undis{display:none;}.fl{float:left;}.fr{float:right;}.cl{clear:both;}
+.fb{font-weight:bold;}.fnb{font-weight:200;margin-left:-1px;}.fc30 {color:#303030;font-family:"宋体", "Arial Narrow";}.fchot{color:#ff0700}.f11{font-size:12px;font-family:tahoma;}
+a {color:#000;text-decoration:none;}a:hover {color:#43ac2d;text-decoration:underline;}
+
+
+body{
+background:#E7E1D1 url(<%=asset_path "body_bg.jpg" %>) repeat-x;
+}
+
+#page-wrap {
+width: 985px;
+height: auto;
+margin: 0px auto;
+}
+
+#banner,#nav,#sidebar-wrapper,#main-content,#bread-crumb,#fbar,#footer{
+float: left;
+}
+
+#banner{
+width: 985px;
+height: 285px;
+}
+
+#nav{
+margin-top: 1px;
+width:985px;
+height:30px;
+background: url(<%=asset_path "nav.jpg"%>) no-repeat;
+font-size: 14px;
+}
+
+#bread-crumb{
+width:985px;
+height: 20px;
+padding-left:10px;
+margin-bottom:3px;
+}
+
+#bread-crumb #nav{
+background:none;
+float:left;
+width:980px;
+font-size:12px;
+}
+
+#sidebar-wrapper{
+width:250px;
+min-height: 965px;
+}
+
+#main-content{
+width:695px;
+min-height: 925px;
+padding:10px 20px;
+}
+
+#fbar{
+margin-top: 20px;
+width: 965px;
+height: 156px;
+background: url(<%=asset_path "fbar_bg.png"%>) no-repeat;
+padding: 50px 0 0 20px;
+}
+
+#footer{
+margin-top: 20px;
+width: 985px;
+text-align:center;
+}
+
+
+#copyright{
+height: 32px;
+line-height: 32px;
+}
+
+.supertone{
+padding-left: 130px;
+background: url(<%=asset_path "supertone.png"%>) no-repeat 0 -3px;
+line-height: 24px;
+height: 24px;
+}
+
+.group,.clear{*zoom:1}
+.group:after,.clear:after{content:'\20';display:block;clear:both;height:0}
+
+/*导航*/
+/*
+LEVEL ONE
+*/
+ul.dropdown                         { position: relative;z-index: 99999; }
+ul.dropdown li                      {  float: left; zoom: 1;padding:0 10px;background: url(<%=asset_path "nav_split.jpg" %>) no-repeat right 5px}
+ul.dropdown a:hover		            { color: #fff; }
+ul.dropdown a:active                { color: #ffa500; }
+ul.dropdown li a                    { display: block; padding: 4px 8px;color: #fff;}
+ul.dropdown li:last-child a         { border-right: none; } /* Doesn't work in IE */
+ul.dropdown li.hover,
+ul.dropdown li:hover                { color: black; position: relative; }
+ul.dropdown li.hover a              { color: black; }
+
+
+/*
+LEVEL TWO
+*/
+ul.dropdown ul{
+width: 220px;
+visibility: hidden;
+position: absolute;
+top: 100%; left: 0;
+z-index: 100;
+}
+
+ul.dropdown ul li{
+font-weight: normal;
+background: #f6f6f6;
+color: #000;
+border-bottom: 1px solid #ccc;
+float: none;
+*filter: Alpha(opacity=90);
+-moz-opacity:.9;
+opacity:0.9;
+}
+
+/* IE 6 & 7 Needs Inline Block */
+ul.dropdown ul li a					{ border-right: none; width: 100%; display: inline-block; color: #000;background-image: none;}
+ul.dropdown ul li a:hover			{ color: #000;}
+
+/*
+LEVEL THREE
+*/
+ul.dropdown ul ul 					{ left: 100%; top: 0; }
+ul.dropdown li:hover > ul 			{ visibility: visible; }
+
+*ul.dropdown ul li					{ display: inline; width: 100%; }
+
+#nav-end{
+background-image: none;
+}
+
+/*导航结束*/
+
+/*侧栏*/
+.widget-container{
+width:230px;
+background: url(<%=asset_path "sidebar_hr.gif"%>) no-repeat bottom;
+padding: 10px 10px;
+}
+
+.widget-container ul li,.index-posts li{
+list-style-image: url(<%=asset_path "detal.png"%>);
+margin:5px 20px 0 20px;
+border-bottom: 1px #ccc dotted;
+}
+
+#wp_sidebarlogin-3 ul li{
+list-style: none;
+border: none;
+}
+
+
+#wp_sidebarlogin-3 .text{
+width: 70%;
+}
+
+#linkcat-2 ul li{
+list-style-image: url(<%=asset_path "external_link.png"%>);
+}
+
+
+.widget-title{
+padding-left: 5px;
+font-size:16px;
+font-family: "微软雅黑";
+margin-bottom: 5px;
+color: #fff;
+}
+
+.widget-title a{color: #fff;}
+
+.widget-title a:hover{color: #daa520;}
+
+
+
+#categoryposts-2 h3,#wp_sidebarlogin-3 h3,#linkcat-2 h3,.sidebar-title{
+background: url(<%=asset_path "sidebar_widget_bg.png"%>) no-repeat;
+height: 29px;
+line-height: 29px;
+}
+
+#login-title{
+background: url(<%=asset_path "login_title.gif" %>>) no-repeat;
+}
+
+.login-bar-links{
+width:60px;
+padding-left:18px;
+height:22px;
+display:block;
+float:left;
+}
+
+#logout-link{
+background:url(<%=asset_path "admin/tree/logout.png" %>) no-repeat 0px 4px;
+}
+
+#board-link{
+background: url(<%=asset_path "board.png" %>) no-repeat  0px 4px;
+}
+
+#notice-title{
+background: url(<%=asset_path "notice_title.gif"%>) no-repeat;
+}
+
+
+#login-form{
+margin:10px 0 0 20px;
+}
+
+/*针对Category Posts Widget*/
+.cat-post-item .post-date{
+float: right;
+color: gray;
+}
+
+
+#website-info li{
+  list-style: url(<%=asset_path "sta.png"%>);
+  margin-left:25px;
+}
+
+
+/*end Category Posts Widget*/
+
+/*侧栏结束*/
+
+/*主要内容*/
+
+
+.home-row{
+width:695px;
+height: 240px;
+position:relative;
+}
+
+.home-row .index-row-column{
+  float:left;
+  width:345px;
+}
+
+.home-row h3{
+border-bottom:2px solid #119729; 
+}
+
+
+.more{
+list-style-image: none;
+border: none;
+}
+
+/*主要内容结束*/
+
+/*文章分类*/
+#posts-list h3,h3.page-title{
+font-size: 16px;
+font-family: "微软雅黑";
+line-height: 20px;
+margin-bottom: 30px;
+border-bottom: 1px dashed #ccc;
+padding-bottom: 10px;
+}
+
+.post-date{
+float: right;
+color: #646464;
+}
+
+#posts-list li ul li{
+margin-bottom:20px;
+}
+
+.index-posts{
+width:400px;
+position:absolute;
+padding:10px;
+left:250px;
+top:20px;
+}
+
+.index-posts-narrow{
+  width:285px;
+  padding:10px;
+}
+
+.index-slide{
+margin:10px 5px 0px 5px;
+clear:none;
+}
+
+
+
+/*fbar 开始*/
+#fbar ul{
+float: left;
+}
+
+#fbar .ext-cate-wrapper,#fbar h3{
+width: 165px;
+float: left;
+margin-right:25px;
+}
+
+#fbar h3{
+font-size: 16px;
+font-family: "微软雅黑";
+line-height: 20px;
+margin-bottom: 10px;
+}
+
+#fbar ul li ul li{
+margin:5px;
+width:60px;
+line-height: 24px;
+height: 24px;
+float:left;
+background: url(<%=asset_path "department.png"%>) no-repeat 0 0;
+padding-left:28px;
+}
+
+#fbar ul li a{
+border-bottom: 1px #daa520 dotted;
+}
+
+#fbar ul li ul li.cat-item-10{
+background: url(<%=asset_path "chinese.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-17{
+background: url(<%=asset_path "math.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-19{
+background: url(<%=asset_path "english.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-25{
+background: url(<%=asset_path "physical.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-30{
+background: url(<%=asset_path "chemistry.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-40{
+background: url(<%=asset_path "biological.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-42{
+background: url(<%=asset_path "geography.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-46{
+background: url(<%=asset_path "political.gif"%>) no-repeat 0 5px;
+}
+
+#fbar ul li ul li.cat-item-54{
+background: url(<%=asset_path "history.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-35{
+background: url(<%=asset_path "7.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-37{
+background: url(<%=asset_path "8.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-39{
+background: url(<%=asset_path "9.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-33{
+background: url(<%=asset_path "art.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-38{
+background: url(<%=asset_path "basketball.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-44{
+background: url(<%=asset_path "group.jpg"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-75{
+background: url(<%=asset_path "science.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-75{
+background: url(<%=asset_path "science.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-53{
+background: url(<%=asset_path "zongwu.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-57{
+background: url(<%=asset_path "jiaowu.png"%>) no-repeat 0 0;
+}
+
+#fbar ul li ul li.cat-item-65{
+background: url(<%=asset_path "principal.png"%>) no-repeat 0 0;
+}
+
+#cate-list-resource{
+width: 320px;
+}
+
+#cate-list-grade{
+width: 140px;
+}
+
+#cate-list-league{
+width:160px;
+}
+
+#cate-list-administrative{
+width:240px;
+}
+
+
+/*fbar 结束*/
+
+
+.shadow {
+filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=5);/*for ie6,7,8*/
+-moz-box-shadow:2px 2px 5px #969696;/*firefox*/
+-webkit-box-shadow:2px 2px 5px #969696;/*webkit*/
+box-shadow:2px 2px 5px #969696;/*opera或ie9*/
+}
+
+
+
+/*单篇文章内容*/
+#single-post>h3{
+font-size:24px;
+margin:10px 0;
+}
+
+#post-meta{
+margin-top:10px;
+border-bottom: 1px dashed #dcdcdc;
+text-align:right;
+color:#666;
+}
+
+#post-content{
+text-indent: 2em;
+margin: 20px 0 10px 0;
+padding: 10px 0 10px 0;
+border-bottom: 1px dashed #dcdcdc;
+font-size: 14px;
+font-size: 14px;
+overflow:auto;
+float: left;
+width:100%;
+}
+
+#next-post{
+float:right;
+color:#999;
+}
+
+#pre-post{
+float:left;
+color:#999;
+}
+
+#content-wrapper{
+background: url(<%=asset_path "main_bg_middle.png" %>) repeat-y 0px 0px;
+float: left;
+}
+
+#content-top{
+background: url(<%=asset_path "main_bg.png" %>) no-repeat top left;
+float: left;
+height: 10px;
+width: 100%;
+}
+
+#content-bottom{
+background: url(<%=asset_path "main_bg.png" %>) repeat-y bottom left;
+float: left;
+height: 10px;
+width: 100%;
+}
+
+#comments{
+height: 350px;
+float: left;
+}
+
+.entry-title{
+background: url(<%=asset_path "circle.png" %>) no-repeat left;
+padding-left: 10px;
+}
+
+#post-uploads{
+  text-align:center;
+}
+
+#post-uploads img{
+  margin:20px 0 0 -50px;
+}
+
+
+/*end of 文章*/
+
+
+/*相册*/
+.gallery dl{
+float:left;
+margin:5px;
+}
+
+.gallery{
+}
+
+
+
+/* 附件*/
+a[href$=".zip"],a[href$=".7z"],a[href$=".rar"]{background:url(<%=asset_path "rar.gif"%>) no-repeat left center;padding-left:19px;}
+/*end 附件*/
+
+/*注册表单*/
+.user-form label{
+width:80px;
+text-align:right;
+display:inline-block;
+}
+
+.user-form .form-field{
+margin:20px;
+}
+
+/*___form validation error messages___*/
+.error {
+background: #FFE6E7 !important;
+-webkit-transition: background .8s ease;
+-moz-transition: background .8s ease;
+-o-transition: background .8s ease;
+-ms-transition: background .8s ease;
+transition: background .8s ease;
+border: 1px solid red;
+}
+p.error-message {
+/*	font-size: 70%;*/
+color: #6d0019;
+position: absolute;
+margin-top: -6em;
+margin-left: 19em;
+background: #fff;
+padding: .5em .4em;
+border: 1px solid #ccc;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+}
+p.error-message:before {
+position: absolute;
+display: block;
+content: "";
+border-color: #fff transparent transparent transparent;
+border-style: solid;
+border-width: 10px;
+height: 0;
+width: 0;
+left: 1.5em;
+bottom: -20px;
+}
+.field_with_errors{
+display:inline
+}
+
+.error-tips ul li{
+padding-left:18px;
+background:url(<%=asset_path("admin/error.png")%>) no-repeat 0 3px;
+height:25px;
+}
+

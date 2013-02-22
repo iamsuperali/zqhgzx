@@ -1,0 +1,61 @@
+<h3 class="page-title">用户注册</h3>
+<script src="<%=asset_path("ssValidate.js")%>"></script>
+<div class="user-form">
+  <%= form_for(@user,:url=>"/home/create_user",:html => { :multipart => true,:class=>"required",:id=>"register-form"}) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <fieldset class="error-tips">
+          <legend>提示</legend>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </fieldset>
+      </div>
+    <% end %>
+
+    <div class="form-field">
+      <%= f.label :email,"注册邮箱" %>
+      <%= f.email_field :email,:class=>"validateEmail" %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :user_name,"用户名" %>
+      <%= f.text_field :user_name,:class=>"validateEmpty" %>
+    </div>
+
+
+    <div class="form-field">
+      <%= f.label :password,"密码"  %>
+      <%= f.password_field :password,:class=>"validateEmpty" %></div>
+
+    <div  class="form-field">
+      <%= f.label :password_confirmation,"密码确认"  %>
+      <%= f.password_field :password_confirmation,:class=>"validateEmpty" %></div>
+
+
+    <div  class="form-field">
+      <%= f.label :real_name,"真实姓名" %>
+      <%= f.text_field :real_name,:class=>"validateEmpty" %>
+    </div>
+
+    <div  class="form-field">
+      <%= f.label :id_card,"身份证号" %>
+      <%= f.text_field :id_card,:class=>"validateEmpty" %>
+    </div>
+
+    <div  class="form-field">
+      <%= f.label :tel,"联系电话" %>
+      <%= f.text_field :tel,:class=>"validateEmpty" %>
+    </div>
+
+    <div  class="form-field">
+      <%= f.label :company,"工作单位" %>
+      <%= f.text_field :company,:class=>"validateEmpty" %>
+    </div>
+
+    <div><%= f.submit "确定",:id=>"register-summit" %></div>
+  <% end %>
+</div>
+

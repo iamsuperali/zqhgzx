@@ -1,0 +1,49 @@
+<script type="text/javascript" >
+  $(function() {
+    $( "#event_start_at" ).datepicker();
+    $( "#event_end_at" ).datepicker();
+  });
+</script>
+<fieldset>
+  <legend><h1>考勤记录查询</h1></legend>
+  <%=form_tag('/events', :method =>"get")%>
+  开始日期:<input type="text" id="event_start_at" name="event[start_at]" />
+  结束日期:<input type="text" id="event_end_at" name="event[end_at]" />
+  姓名：<input type="text" id="event_user_name" name="event[real_name]" />
+  科组：<%= select(:event,:subject,subject_list,:include_blank=>"") %>
+  级组：<%= select(:event,:grade,grade_list,:include_blank=>"") %>
+  <div><%= submit_tag '确定' %></div>
+</form>
+</fieldset>
+<table class="admin">
+  <tr>
+    <th>姓名</th>
+    <th>考勤类别</th>
+    <th>起始日期</th>
+    <th>终止日期</th>
+    <th>记录人</th>
+    <th>审批</th>
+    <th>说明</th>
+    <th>记录时间</th>
+    <th colspan="2">操作</th>
+  </tr>
+
+  <% @events.each do |event| %>
+    <tr>
+      <td  scope="row"class="spec"><%= event.user.real_name %></td>
+      <td><%= format_event_cate(event.cate) %></td>
+      <td><%= event.start_at.strftime("%y-%m-%d") %>第<%= event.start_node %>节</td>
+      <td><%= event.end_at.strftime("%y-%m-%d") %>第<%= event.end_node %>节</td>
+      <td><%= event.recorder.real_name %></td>
+      <td><%= event.examiner.real_name %></td>
+      <td><%= event.remark %></td>
+      <td><%= event.created_at.strftime("%y-%m-%d  %I:%M%p") %></td>
+      <td><%= link_to '修改', edit_event_path(event) %></td>
+      <td><%= link_to '删除', event, method: :delete, data: { confirm: '你确定?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to '新增考勤记录', new_event_path %>

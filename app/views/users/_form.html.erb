@@ -1,0 +1,82 @@
+<%= form_for(@user,:html => { :multipart => true }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <fieldset class="error-tips">
+        <legend>提示</legend>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </fieldset>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :email,"注册邮箱",:class=>"form" %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :user_name,"用户名",:class=>"form" %>
+    <%= f.text_field :user_name %>
+  </div>
+
+  <%unless @user.id%>
+    <div><%= f.label :password,"密码",:class=>"form"  %>
+      <%= f.password_field :password %></div>
+
+    <div><%= f.label :password_confirmation,"密码确认",:class=>"form"  %>
+      <%= f.password_field :password_confirmation %></div>
+  <%end%>
+
+  <div>
+    <%= f.label :real_name,"真实姓名",:class=>"form" %>
+    <%= f.text_field :real_name %>
+  </div>
+
+  <div>
+    <%= f.label :id_card,"身份证号",:class=>"form" %>
+    <%= f.text_field :id_card %>
+  </div>
+
+  <div>
+    <%= f.label :tel,"联系电话",:class=>"form" %>
+    <%= f.text_field :tel %>
+  </div>
+
+  <div>
+    <%= f.label :company,"工作单位",:class=>"form" %>
+    <%= f.text_field :company %>
+  </div>
+
+
+  <div>
+    <%= f.label :grade,"年级",:class=>"form" %>
+    <%= f.select(:grade,grade_list,:include_blank=>"无") %>
+  </div>
+
+  <div>
+    <%= f.label :org_id,"科组",:class=>"form" %>
+    <%= f.select(:subject,subject_list,:include_blank=>"无") %>
+  </div>
+
+  <div><%= f.label :role,"角色",:class=>"form"%>
+    <%count=0%>
+    <% for role in User::ROLES %>
+      <%count+=1%>
+      <%= check_box_tag "user[roles][#{count}]", role, @user.roles.include?(role), 
+        {:name => "user[roles][]"}%>
+      <%= label_tag "user_roles_#{count}", role.humanize,:class => "roles-chkbox" %>
+    <% end %>
+    <%= hidden_field_tag "user[roles][]", "" %>
+  </div>
+
+  <div>
+    <%= f.label :approved,"通过审批",:class=>"form" %>
+    <%= f.check_box :approved %>
+  </div>
+
+  <div><%= f.submit "确定" %></div>
+<% end %>
+

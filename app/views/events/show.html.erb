@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @event.user_id %>
+</p>
+
+<p>
+  <b>Cate:</b>
+  <%= @event.cate %>
+</p>
+
+<p>
+  <b>Start at:</b>
+  <%= @event.start_at %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @event.end_at %>
+</p>
+
+<p>
+  <b>Start node:</b>
+  <%= @event.start_node %>
+</p>
+
+<p>
+  <b>End node:</b>
+  <%= @event.end_node %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @event.created_by %>
+</p>
+
+<p>
+  <b>Approved by:</b>
+  <%= @event.approved_by %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%= @event.remark %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  cate: 1
+  start_at: 2012-12-17 10:38:34
+  end_at: 2012-12-17 10:38:34
+  start_node: 1
+  end_node: 1
+  created_by: 1
+  approved_by: 1
+  remark: MyString
+
+two:
+  user_id: 1
+  cate: 1
+  start_at: 2012-12-17 10:38:34
+  end_at: 2012-12-17 10:38:34
+  start_node: 1
+  end_node: 1
+  created_by: 1
+  approved_by: 1
+  remark: MyString

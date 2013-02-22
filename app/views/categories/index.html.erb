@@ -1,0 +1,24 @@
+<h1>分类列表</h1>
+
+<table class="admin">
+  <tr>
+    <th>上级分类</th>
+    <th>名称</th>
+    <th>状态</th>
+    <th colspan="2" >操作</th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <th  scope="row"class="spec"><%= category.parent.name if category.parent %></th>
+    <td><%= category.name %></td>
+    <td><%= format_status(category.status) %></td>
+    <td><%= link_to '编辑', edit_category_path(category) %></td>
+    <td><%= link_to '删除', category, method: :delete, data: { confirm: '确定删除?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= will_paginate @categories,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination"  %>
+<%= link_to '新增分类', new_category_path %>
