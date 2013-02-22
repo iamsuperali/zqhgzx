@@ -17,7 +17,7 @@
           <% @uploads.each do |u| %>
             <%url_string = %>
             <a href="<%=u.upload.url(:content)%>" target="_blank">
-              <img class="shadow" src="<%=u.upload.url(:medium)%>" alt="" />
+              <img class="shadow" src="<%=u.upload.url(:content)%>" alt="" />
             </a>
           <%end%>
         <% end %>

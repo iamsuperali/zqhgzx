@@ -5,8 +5,8 @@ class Upload < ActiveRecord::Base
     :path => ":rails_root/public/images/photos/:id/:basename_:style.:extension",
     :styles => {
     :content=>"600>",
-    :medium => "240>", 
-    :thumb => "80>" }
+    :medium => "240x180^",
+    :thumb => "80x80^" }
   belongs_to :post
 
   include Rails.application.routes.url_helpers
