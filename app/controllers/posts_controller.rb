@@ -156,7 +156,7 @@ class PostsController < ApplicationController
 
         original_content = item.at_xpath('content:encoded').text.gsub(/<!--more-->/, '')
         content = original_content.gsub(/<img[^>]*>/,'')
-        content.gsub!(/\[caption[^>]*caption\]/,"")
+        content = content.gsub(/\[caption.*caption\]/,"")
 
         @post.content = content
         @post.approved = 1
@@ -176,7 +176,8 @@ class PostsController < ApplicationController
             file = Tempfile.new([basename, extname])
             file.binmode
 
-            open(URI.parse(URI.encode(img['src'].strip))) do |data|
+            open(URI.parse(URI.encode(img['src'].gsub(
+                    'hz.bosskids.org','www.zqhzgx.com').strip))) do |data|
               file.write data.read
             end
 
