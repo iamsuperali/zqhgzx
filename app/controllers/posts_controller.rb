@@ -156,6 +156,7 @@ class PostsController < ApplicationController
 
         original_content = item.at_xpath('content:encoded').text.gsub(/<!--more-->/, '')
         content = original_content.gsub(/<img[^>]*>/,'')
+        content.gsub!(/\[caption[^>]*caption\]/)
 
         @post.content = content
         @post.approved = 1
