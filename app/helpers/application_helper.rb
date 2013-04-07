@@ -87,5 +87,14 @@ module ApplicationHelper
   def get_posts(category_id = nil)
     return Post.find_by_category_id(category_id,:limit=>5)
   end
-
+  
+  def islock(post)
+    if post.status != 1 && !current_user
+      return true
+    elsif post.status == 3 && !current_user.can_read(post)
+      return true
+    else
+      return false
+    end
+  end
 end

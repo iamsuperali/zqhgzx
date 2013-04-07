@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     @posts = Post.paginate(
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",params[:id],params[:id]],
-      :page => params[:page], :per_page =>10)
+      :page => params[:page], :per_page =>20)
 
     respond_to do |format|
       format.html { render :layout=>"application" }# show.html.erb

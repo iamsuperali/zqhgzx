@@ -21,23 +21,39 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @post.hit +=1
-    @post.save
     
-    @next_post = Post.where("category_id = ? and id > ?",@post.category_id,@post.id).limit(1).first
-    @pre_post = Post.order("id desc").where("category_id = ? and id < ?",@post.category_id,@post.id).limit(1).first
-    #面包屑导航的数据
-    @posts_breadcrumb_items = [
-      {:key => :main, :name => 'Main',:url => '/main',:items => [
-          {:key => :sub1, :name => 'Submenu 1', :url => '/sub1'},
-          {:key => :sub2, :name => 'Submenu 2', :url => '/sub2'}
-        ]}
-    ]
-    @uploads = Upload.find_all_by_post_id(params[:id])
+    if (@post.status == 2 && !current_user)
+      respond_to do |format|
+        format.html {redirect_to "/my/users/sign_in", notice: "您没有权限阅读此文章，请先登陆。"}
+      end
+    elsif (@post.status == 3 && !current_user) 
+      respond_to do |format|
+        format.html {redirect_to "/my/users/sign_in", notice: "您没有权限阅读此文章，请先登陆。"}
+      end
+    elsif (@post.status == 3 && !current_user.can_read(@post))
+      respond_to do |format|
+        format.html {redirect_to "/", notice: "您的用户级别不能阅读此文章。"}
+      end
+    else
+    
+      @post.hit +=1
+      @post.save
+    
+      @next_post = Post.where("category_id = ? and id > ?",@post.category_id,@post.id).limit(1).first
+      @pre_post = Post.order("id desc").where("category_id = ? and id < ?",@post.category_id,@post.id).limit(1).first
+      #面包屑导航的数据
+      @posts_breadcrumb_items = [
+        {:key => :main, :name => 'Main',:url => '/main',:items => [
+            {:key => :sub1, :name => 'Submenu 1', :url => '/sub1'},
+            {:key => :sub2, :name => 'Submenu 2', :url => '/sub2'}
+          ]}
+      ]
+      @uploads = Upload.find_all_by_post_id(params[:id])
 
-    respond_to do |format|
-      format.html { render :layout=>"application"}# show.html.erb
-      format.json { render json: @post }
+      respond_to do |format|
+        format.html { render :layout=>"application"}# show.html.erb
+        format.json { render json: @post }
+      end
     end
   end
 
@@ -128,10 +144,38 @@ class PostsController < ApplicationController
   end
 
   def period
-    if params[:post] && !params[:post][:start].blank? && !params[:post][:end].blank?
+    if params[:post] && !params[:post][:start].blank? && !params[:post][:end].blank? && !params[:condition].blank?
       @start_time = params[:post][:start] + " 00:00:00"
       @end_time = params[:post][:end] + " 23:59:59"
       @times = [[@start_time],[@end_time]]
+      
+      @result = []
+      
+      case params[:condition]
+      when "org"
+        @result << ["科组","统计"]
+        Post::ORG_LIST.each do |cur_org|
+          count = Post.where(:created_at =>@times[0]..@times[1],:org_id=>cur_org[1]).count()
+          @result << [cur_org[0],count]
+        end 
+      when "grade"
+        @result << ["公会小组","统计"]
+        Post::GRADE_LIST.each do |cur_grade|
+          count = Post.where(:created_at =>@times[0]..@times[1],:grade=>cur_grade[1]).count()
+          @result << [cur_grade[0],count]
+        end 
+      when "account"
+        @result << ["账号","统计"]
+        User.staff.each do |cur_u|
+          count = Post.where(:created_at =>@times[0]..@times[1],:user_id => cur_u.id).count()
+          @result << [cur_u.user_name,count]
+        end 
+      when "author"
+        @result << ["作者","统计"]
+        Post.select("author,count(id) as 'count'").group("author").each do |r|
+          @result << [r.author,r.count]
+        end 
+      end
     end
   end
 
@@ -214,4 +258,5 @@ class PostsController < ApplicationController
       params[:post][:category_id] =params[:parent_id] unless params[:post][:category_id] == 0
     end
   end
+
 end

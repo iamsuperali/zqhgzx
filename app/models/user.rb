@@ -27,11 +27,13 @@ class User < ActiveRecord::Base
     :subject
   validates_uniqueness_of   :user_name, :case_sensitive => false
   # attr_accessible :title, :body
-
+  
+  #范围教职员
   scope :staff,where("approved == 1 and roles_mask < 64")
+  
   scope :administrative,where("approved == 1 and (roles_mask & 7) > 0")
 
-
+  #权限必须由高到低
   ROLES = %w[超级管理员 校长 主任 级组长 科组长 会员 访客]
 
   def roles=(roles)
@@ -46,6 +48,15 @@ class User < ActiveRecord::Base
 
   def is?(role)
     roles.include?(role.to_s)
+  end
+  
+  def can_read(post)
+    if self.roles.length > 0
+      cur_roles = ROLES[(ROLES.index(self.roles[0]))..7]
+      return cur_roles.include?(post.user.roles[0])
+    else
+      return false
+    end
   end
   
   def sign?

@@ -40,9 +40,11 @@
 
         <div id="sidebar-wrapper">
           <ul id="sidebar">
-            <li id="categoryposts-2" class="widget-container widget_categoryposts"><h3 class="widget-title">校园公告</h3>
+            <li id="categoryposts-2" class="widget-container widget_categoryposts">
+              <a href="/categories/2" class="widget-title-link"><h3 class="widget-title">校园公告</h3></a>
               <ul>
                 <%= render :partial =>"/home/sidebar_posts_item",:collection=>Post.where(:category_id => 2).limit(5),:as => :item%>
+                <li class="more"><a href="/categories/2">更多...</a></li>
               </ul>    
             </li>
 
@@ -60,11 +62,7 @@
               <ul class='xoxo blogroll'>
                 <% my_hot_posts = hot_posts %>
                 <% if my_hot_posts && my_hot_posts.length > 0 %>
-                  <% my_hot_posts.each do |p| %>
-                    <li class="cat-post-item">
-                      <%=link_to p.title,p %>
-                    </li>
-                  <% end %>
+                  <%= render :partial =>"/home/sidebar_posts_item",:collection=>my_hot_posts,:as => :item%>
                 <%end%>
               </ul>
             </li>
@@ -78,20 +76,13 @@
               </ul>
             </li>
 
-            <li class="widget-container widget_wp_sidebarlogin">
-              <h3 class="widget-title sidebar-title"><span>学校荣誉</span></h3>
-              <ul class='xoxo blogroll'>
-                <% posts_36 = get_posts(36) %>
-                <% if posts_36 && posts_36.length > 0 %>
-                  <% get_posts(36).each do |p| %>
-                    <li class="cat-post-item">
-                      <%=link_to p.title,p %>
-                    </li>
-                  <% end %>
-                <%end%>
-              </ul>
+            <li id="categoryposts-36" class="widget-container widget_categoryposts">
+              <a href="/categories/36" class="widget-title-link"><h3 class="widget-title">校园荣誉</h3></a>
+              <ul>
+                <%= render :partial =>"/home/sidebar_posts_item",:collection=>Post.where(:category_id => 36).limit(5),:as => :item%>
+                <li class="more"><a href="/categories/36">更多...</a></li>
+              </ul>    
             </li>
-
 
             <li id="linkcat-2" class="widget-container widget_links"><h3 class="widget-title">链接表</h3>
               <ul class='xoxo blogroll'>

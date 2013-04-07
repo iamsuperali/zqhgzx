@@ -196,9 +196,11 @@ color: #fff;
 
 .widget-title a:hover{color: #daa520;}
 
+.widget-title-link:hover{text-decoration:none;}
 
 
-#categoryposts-2 h3,#wp_sidebarlogin-3 h3,#linkcat-2 h3,.sidebar-title{
+
+#categoryposts-2 h3,#wp_sidebarlogin-3 h3,#linkcat-2 h3,.sidebar-title,#categoryposts-36 h3{
 background: url(<%=asset_path "sidebar_widget_bg.png"%>) no-repeat;
 height: 29px;
 line-height: 29px;
@@ -269,9 +271,14 @@ border-bottom:2px solid #119729;
 }
 
 
-.more{
+.more,#sidebar li.more,.index-posts .more,.index-row-column .more{
 list-style-image: none;
 border: none;
+text-align:right;
+}
+
+.more a{
+  color: gray;
 }
 
 /*主要内容结束*/
@@ -602,5 +609,13 @@ display:inline
 padding-left:18px;
 background:url(<%=asset_path("admin/error.png")%>) no-repeat 0 3px;
 height:25px;
+}
+
+.lock{
+  display:inline-block;
+  background:url(<%=asset_path("lock.png")%>) no-repeat;
+  height:12px;
+  width:12px;
+  margin-left:-5px;
 }
 

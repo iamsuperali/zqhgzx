@@ -1,139 +1,27 @@
-<script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $('#cate1').bjqs({
-      'height' : 180,
-      'width' : 240,
-      'responsive' : true,
-      'showcontrols' : false
-    });
-    
-    $('#cate9').bjqs({
-      'height' : 180,
-      'width' : 240,
-      'responsive' : true,
-      'showcontrols' : false
-    });
-    
-    $('#cate15').bjqs({
-      'height' : 180,
-      'width' : 240,
-      'responsive' : true,
-      'showcontrols' : false
-    });
-    
-    $('#cate20').bjqs({
-      'height' : 180,
-      'width' : 240,
-      'responsive' : true,
-      'showcontrols' : false
-    });
-  });
-  
-  
-</script>
-
 <div class="home-row">
-  <h3>新闻中心</h3>
-  <div id="cate1" class="index-slide">
-    <ul class="bjqs">
-      <%=generate_slider(@cate1_posts)%>
-    </ul>
-  </div>
-
-  <ul class="index-posts">
-    <%@cate1_posts.each do |p|%>
-      <li class="cat-post-item">
-        <%=link_to p.title,p,:class=>"textcut22"%>
-        <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
-        <span></span>
-      </li>
-    <%end%>
-  </ul>
+  <%= render :partial =>"index_posts_list_with_slider.html",:locals =>{:category_id =>1,:limit =>6}%>
 </div>
 
 <div class="home-row">
-  <h3>学校管理</h3>
-  <div id="cate9" class="index-slide">
-    <ul class="bjqs">
-      <%=generate_slider(@cate9_posts)%>
-    </ul>
-  </div>
-
-  <ul class="index-posts">
-    <%@cate9_posts.each do |p|%>
-      <li class="cat-post-item">
-        <%=link_to p.title,p,:class=>"textcut22"%>
-        <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
-        <span></span>
-      </li>
-    <%end%>
-  </ul>
+  <%= render :partial =>"index_posts_list_with_slider.html",:locals =>{:category_id =>9,:limit =>6}%>
 </div>
 
 <div class="home-row">
   <div class="index-row-column">
-    <h3>党团工作</h3>
-    <ul class="index-posts-narrow">
-      <%@cate15_posts.each do |p|%>
-        <li class="cat-post-item">
-          <%=link_to p.title,p,:class=>"textcut16"%>
-          <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
-          <span></span>
-        </li>
-      <%end%>
-    </ul>
+    <%= render :partial =>"index_posts_list_without_slider.html",:locals =>{:category_id =>15,:limit =>6}%>
   </div>
 
   <div class="index-row-column">
-    <h3>教学教研</h3>
-    <ul class="index-posts-narrow">
-      <%@cate20_posts.each do |p|%>
-        <li class="cat-post-item">
-          <%=link_to p.title,p,:class=>"textcut16"%>
-          <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
-          <span></span>
-        </li>
-      <%end%>
-    </ul>
+    <%= render :partial =>"index_posts_list_without_slider.html",:locals =>{:category_id =>20,:limit =>6}%>
   </div>
 
 </div>
 
 
 <div class="home-row">
-  <h3>学校文化</h3>
-  <div id="cate27" class="index-slide">
-    <ul class="bjqs">
-      <%=generate_slider(@cate27_posts)%>
-    </ul>
-  </div>
-
-  <ul class="index-posts">
-    <%@cate27_posts.each do |p|%>
-      <li class="cat-post-item">
-        <%=link_to p.title,p,:class=>"textcut22"%>
-        <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
-        <span></span>
-      </li>
-    <%end%>
-  </ul>
+  <%= render :partial =>"index_posts_list_with_slider.html",:locals =>{:category_id =>27,:limit =>6}%>
 </div>
 
 <div class="home-row">
-  <h3>第二课堂</h3>
-  <div id="cate31" class="index-slide">
-    <ul class="bjqs">
-      <%=generate_slider(@cate31_posts)%>
-    </ul>
-  </div>
-
-  <ul class="index-posts">
-    <%@cate31_posts.each do |p|%>
-      <li class="cat-post-item">
-        <%=link_to p.title,p,:class=>"textcut24"%>
-        <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
-        <span></span>
-      </li>
-    <%end%>
-  </ul>
+  <%= render :partial =>"index_posts_list_with_slider.html",:locals =>{:category_id =>31,:limit =>6}%>
 </div>

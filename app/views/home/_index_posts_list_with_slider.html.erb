@@ -1,0 +1,46 @@
+<%
+posts = Post.find(:all,
+  :joins => :category,
+  :conditions => ["categories.id = ? or categories.parent_id = ? ",category_id,category_id],
+  :limit => limit
+)
+%>
+
+<h3><a href="/categories/<%=category_id%>"><%=Category.find(category_id).name%></a></h3>
+<% if posts.length && posts.length >0 %>
+
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('#cate<%=category_id%>').bjqs({
+        'height' : 180,
+        'width' : 240,
+        'responsive' : true,
+        'showcontrols' : false
+      });
+    });
+  
+  </script>
+
+
+  <div id="cate<%=category_id%>" class="index-slide">
+    <ul class="bjqs">
+      <%=generate_slider(posts)%>
+    </ul>
+  </div>
+
+  <ul class="index-posts">
+    <%posts.each do |p|%>
+      <li class="cat-post-item">
+        <%=link_to p.title,p,:class=>"textcut22",:target=>"_blank"%>
+        <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
+        <% if islock(p) %>
+          <span class="lock"></span>
+        <% end %>
+
+      </li>
+    <%end%>
+    <% if  posts.length == limit %>
+      <li class="more"><a href="/categories/<%=category_id%>">更多...</a></li>
+    <%end%>
+  </ul>
+<%end%>

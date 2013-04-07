@@ -4,37 +4,37 @@ class HomeController < ApplicationController
     @cate1_posts = Post.find(:all,
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",1,1],
-      :limit => 7
+      :limit => 6
     )
     
     @cate9_posts = Post.find(:all,
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",9,9],
-      :limit => 7
+      :limit => 6
     )
     #党团工作
     @cate15_posts = Post.find(:all,
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",15,15],
-      :limit => 7
+      :limit => 6
     )
     #教学教研
     @cate20_posts = Post.find(:all,
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",20,20],
-      :limit => 7
+      :limit => 6
     )
     #学校文化
     @cate27_posts = Post.find(:all,
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",27,27],
-      :limit => 7
+      :limit => 6
     )
     #第二课堂
     @cate31_posts = Post.find(:all,
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",31,31],
-      :limit => 7
+      :limit => 6
     )
   end
   
