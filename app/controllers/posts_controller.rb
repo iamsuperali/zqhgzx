@@ -254,9 +254,7 @@ class PostsController < ApplicationController
   protected
   
   def deal_with_parent_id
-    if params[:post] && params[:parent_id]
-      params[:post][:category_id] =params[:parent_id] unless params[:post][:category_id] == 0
-    end
+      params[:post][:category_id] =params[:parent_id] unless params[:post][:category_id]
   end
 
 end
