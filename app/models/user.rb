@@ -62,6 +62,14 @@ class User < ActiveRecord::Base
   def sign?
     self.login_logs.exists?(['created_at > ?',(DateTime.now).strftime("%Y-%m-%d")])
   end
+  
+  def is_administrative?
+    roles_mask & 7 != 0 && approved == 1
+  end
+  
+  def is_staff?
+    roles_mask < 64 && approved == 1
+  end
 
   def active_for_authentication?
     super && approved?

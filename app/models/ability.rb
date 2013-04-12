@@ -9,6 +9,7 @@ class Ability
     can :manage, :all if user.is? :超级管理员
     can [:show], [Category, Post]
     can [:create],[User]
+    can :manage,[Post] if user.is_staff?
     #
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are

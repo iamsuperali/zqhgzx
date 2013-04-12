@@ -24,6 +24,8 @@ jQuery(document).ready(function(){
         var urlMessage    = "<p class='error-message url-message'>That is not a valid URL</p>";
 		
         var textareaError  = "<p class='error-message empty-message'>必填</p>";
+        
+        var nameError = "<p class='error-message empty-message'>请输入中文名</p>";
 	
         // Regular expressions
         var emailRegEx  = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -45,7 +47,7 @@ jQuery(document).ready(function(){
         var vTextarea     = jQuery("textarea.validateTextarea");
 			
 		
-        $("#register-summit").click(function(){
+        $("input:submit").click(function(){
 		
             // ***************************************
             // VALIDATE REQUIRED FIELD FOR ANY INPUT
@@ -168,6 +170,6 @@ jQuery(document).ready(function(){
 								
     }; // end of ssValidate function
 	
-    $("#register-form").ssValidate();
+    $("form.required").ssValidate();
 
 });
