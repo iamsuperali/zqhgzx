@@ -7,6 +7,8 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     can :manage, :all if user.is? :超级管理员
+    can :manage, :all if user.is? :校长
+    can :manage, :all if user.is? :主任
     can [:show], [Category, Post]
     can [:create],[User]
     can :manage,[Post] if user.is_staff?
