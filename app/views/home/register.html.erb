@@ -1,5 +1,9 @@
 <h3 class="page-title">用户注册</h3>
-<script src="<%=asset_path("ssValidate.js")%>"></script>
+<script type="text/javascript">
+  $(function(){
+    $("#register-form").Validform({tiptype:3});
+  })
+</script>
 <div class="user-form">
   <%= form_for(@user,:url=>"/home/create_user",:html => { :multipart => true,:class=>"required",:id=>"register-form"}) do |f| %>
     <% if @user.errors.any? %>
@@ -17,45 +21,45 @@
 
     <div class="form-field">
       <%= f.label :email,"注册邮箱" %>
-      <%= f.email_field :email,:class=>"validateEmail" %>
+      <%= f.email_field :email,{:datatype=>"e",:errormsg=>"请输入邮箱格式"}%>
     </div>
 
     <div class="form-field">
       <%= f.label :user_name,"用户名" %>
-      <%= f.text_field :user_name,:class=>"validateEmpty" %>
+      <%= f.text_field :user_name,{:datatype=>"*",:errormsg=>"不能为空"}%>
     </div>
 
 
     <div class="form-field">
       <%= f.label :password,"密码"  %>
-      <%= f.password_field :password,:class=>"validateEmpty" %></div>
+      <%= f.password_field :password,{:datatype=>"*6-30",:errormsg=>"请输入6-30位密码，可以是数字、字母和特殊符号"}%></div>
 
     <div  class="form-field">
       <%= f.label :password_confirmation,"密码确认"  %>
-      <%= f.password_field :password_confirmation,:class=>"validateEmpty" %></div>
+      <%= f.password_field :password_confirmation,{:datatype=>"*",:recheck=>"user[password]",:errormsg=>"您两次输入的账号密码不一致！"}%></div>
 
 
     <div  class="form-field">
       <%= f.label :real_name,"真实姓名" %>
-      <%= f.text_field :real_name,:class=>"validateEmpty" %>
+      <%= f.text_field :real_name,{:datatype=>"/^[\u4e00-\u9fa5]{2,4}$/",:errormsg=>"请输入您的中文姓名。"}%>
     </div>
 
     <div  class="form-field">
       <%= f.label :id_card,"身份证号" %>
-      <%= f.text_field :id_card,:class=>"validateEmpty" %>
+      <%= f.text_field :id_card,{:datatype=>"s15-18",:errormsg=>"请输入您的身份证号码。"}%>
     </div>
 
     <div  class="form-field">
       <%= f.label :tel,"联系电话" %>
-      <%= f.text_field :tel,:class=>"validateEmpty" %>
+      <%= f.text_field :tel,{:datatype=>"*",:errormsg=>"请输入您的电话号码。"}%>
     </div>
 
     <div  class="form-field">
       <%= f.label :company,"工作单位" %>
-      <%= f.text_field :company,:class=>"validateEmpty" %>
+      <%= f.text_field :company,{:datatype=>"*",:errormsg=>"请输入您的工作单位。"}%>
     </div>
 
-    <div><%= f.submit "确定",:id=>"register-summit" %></div>
+    <div><%= f.submit "确定"%></div>
   <% end %>
 </div>
 

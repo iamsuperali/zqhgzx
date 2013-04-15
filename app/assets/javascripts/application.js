@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require text_cut
 //= require bjqs
+//= require Validform_v5.3.2_min
 
 $(document).ready(function(){
     if ($("#notice").html().length > 0){
