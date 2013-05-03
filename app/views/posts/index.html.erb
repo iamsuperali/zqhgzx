@@ -1,31 +1,26 @@
 <h3>文章列表</h3>
-<table class="admin">
-  <tr>
-    <th>标题</th>
-    <th>分类</th>
-    <th>发表人</th>
-    <th>科组</th>
-    <th>字数</th>
-    <th>作者</th>
-    <th>审批</th>
-    <th colspan="2" >操作</th>
-  </tr>
+<%= grid(@posts_grid) do |g|
 
-<% @posts.each do |post| %>
-  <tr>
-    <th scope="row"class="spec"><%=  link_to post.title, edit_post_path(post),:class=>"textcut16" %></th>
-    <td><%= post.category.name if post.category %></td>
-    <td><%= post.user.real_name if post.user %></td>
-    <td><%= format_org post.org_id %></td>
-    <td><%= post.content.gsub(%r{</?[^>]+?>}, '').length %></td>
-    <td><%= post.author %></td>
-    <td><%= format_boolean post.approved %></td>
-    <td><%= link_to '修改', edit_post_path(post) %></td>
-    <td><%= link_to '删除', post, method: :delete, data: { confirm: '确定删除?' } %></td>
-  </tr>
-<% end %>
-</table>
-<br />
+  g.column :name => '标题', :attribute => 'title',:html=>{:style=>"width:280px;"}
 
-<%= will_paginate @posts,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination"  %>
+  g.column :name => '分类',:model => 'Category', :attribute => 'name',:custom_filter=>:auto do |post|
+    post.category.name if post.category
+  end
+
+  g.column  :name => '发表人',:model => 'User',:attribute => 'real_name',:custom_filter=>:auto do |post|
+    post.user.real_name if post.user
+  end
+
+  g.column  :name => '审批', :attribute => 'approved' do |post|
+    post.approved? ? '是' : '否'
+  end
+
+  g.column   do |post|
+    link_to('修改', edit_post_path(post))
+  end
+  
+  g.column do |post|
+    link_to('删除', post, method: :delete, data: { confirm: '你确定?' })
+  end
+end -%>
 <%= link_to '新增文章', new_post_path %>

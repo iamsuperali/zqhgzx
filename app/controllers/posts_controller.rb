@@ -7,14 +7,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.includes([:user,:category]).where(
-      :user_id=>current_user.id).paginate(
-      :page => params[:page], :per_page =>10)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
+    @posts_grid = initialize_grid(Post,
+      :include => [:category,:user],
+      :per_page => 10)
   end
 
   # GET /posts/1
@@ -254,7 +249,7 @@ class PostsController < ApplicationController
   protected
   
   def deal_with_parent_id
-      params[:post][:category_id] =params[:parent_id] unless params[:post][:category_id]
+    params[:post][:category_id] =params[:parent_id] unless params[:post][:category_id]
   end
 
 end

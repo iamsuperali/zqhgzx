@@ -1,12 +1,12 @@
 <h3>账号列表</h3>
-<table class="admin">
-  <tr>
-    <th>账号名</th>
-    <th>邮箱</th>
-    <th>角色</th>
-    <th colspan="3" >操作</th>
-  </tr>
-
+<table class="table-striped table-bordered table">
+  <thead>
+  <th>账号名</th>
+  <th>邮箱</th>
+  <th>角色</th>
+  <th colspan="3" >操作</th>
+</thead>
+<tbody>
   <% @users.each do |user| %>
     <tr>
       <th scope="row"class="spec"><%= user.user_name %></th>
@@ -27,6 +27,7 @@
       <td><%= link_to '删除', user, method: :delete, data: { confirm: '确定删除?' } %></td>
     </tr>
   <% end %>
+</tbody>
 </table>
 <br />
 

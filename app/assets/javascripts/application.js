@@ -11,8 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require text_cut
+//= require jquery_ujs
 //= require bjqs
 //= require Validform_v5.3.2_min
 

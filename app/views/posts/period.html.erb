@@ -24,7 +24,7 @@
 <%if @result && @result.length > 0 %>
   <div>统计时间：<span class="time-period"><%=params[:post][:start]%></span>至<span class="time-period"><%=params[:post][:end]%></span></div>
 
-  <table cellpadding="0" cellspacing="0" class="admin">
+  <table cellpadding="0" cellspacing="0" class="table-striped table-bordered table">
     <tr>
       <th><%=@result[0][0]%></th>
       <th>时间段内发表文章数目</th>
