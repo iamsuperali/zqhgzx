@@ -43,7 +43,7 @@
             <li id="categoryposts-2" class="widget-container widget_categoryposts">
               <a href="/categories/2" class="widget-title-link"><h3 class="widget-title">校园公告</h3></a>
               <ul>
-                <%= render :partial =>"/home/sidebar_posts_item",:collection=>Post.where(:category_id => 2).limit(5),:as => :item%>
+                <%= render :partial =>"/home/sidebar_posts_item",:collection=>Post.approved.where(:category_id => 2).limit(5),:as => :item%>
                 <li class="more"><a href="/categories/2">更多...</a></li>
               </ul>    
             </li>
@@ -79,7 +79,7 @@
             <li id="categoryposts-36" class="widget-container widget_categoryposts">
               <a href="/categories/36" class="widget-title-link"><h3 class="widget-title">校园荣誉</h3></a>
               <ul>
-                <%= render :partial =>"/home/sidebar_posts_item",:collection=>Post.where(:category_id => 36).limit(5),:as => :item%>
+                <%= render :partial =>"/home/sidebar_posts_item",:collection=>Post.approved.where(:category_id => 36).limit(5),:as => :item%>
                 <li class="more"><a href="/categories/36">更多...</a></li>
               </ul>    
             </li>
@@ -112,59 +112,68 @@
 
       <div id="content-bottom"></div>
 
-      <!--div id="fbar">
+      <div id="fbar">
         <ul id="cate-list-resource">
-          <li class="categories"><h3>教学资源</h3><ul>	<li class="cat-item cat-item-10"><a href="http://www.zqhgzx.com/?cat=10" title="查看 语文 下的所有文章">语文</a>
+          <li class="categories"><h3>教学资源</h3><ul>	<li class="cat-item cat-item-10"><a href="/posts/subject/?subject=1" title="查看 语文 下的所有文章">语文</a>
               </li>
-              <li class="cat-item cat-item-17"><a href="http://www.zqhgzx.com/?cat=17" title="查看 数学 下的所有文章">数学</a>
+              <li class="cat-item cat-item-17"><a href="/posts/subject/?subject=2" title="查看有关 数学 的所有文章">数学</a>
               </li>
-              <li class="cat-item cat-item-19"><a href="http://www.zqhgzx.com/?cat=19" title="查看 英语 下的所有文章">英语</a>
+              <li class="cat-item cat-item-19"><a href="/posts/subject/?subject=3" title="查看有关 英语 的所有文章">英语</a>
               </li>
-              <li class="cat-item cat-item-25"><a href="http://www.zqhgzx.com/?cat=25" title="查看 物理 下的所有文章">物理</a>
+              <li class="cat-item cat-item-25"><a href="/posts/subject/?subject=4" title="查看有关 物理 的所有文章">物理</a>
               </li>
-              <li class="cat-item cat-item-30"><a href="http://www.zqhgzx.com/?cat=30" title="查看 化学 下的所有文章">化学</a>
+              <li class="cat-item cat-item-30"><a href="/posts/subject/?subject=5" title="查看有关 化学 的所有文章">化学</a>
               </li>
-              <li class="cat-item cat-item-40"><a href="http://www.zqhgzx.com/?cat=40" title="查看 生物 下的所有文章">生物</a>
+              <li class="cat-item cat-item-40"><a href="/posts/subject/?subject=6" title="查看有关 生物 的所有文章">生物</a>
               </li>
-              <li class="cat-item cat-item-42"><a href="http://www.zqhgzx.com/?cat=42" title="查看 地理 下的所有文章">地理</a>
+              <li class="cat-item cat-item-42"><a href="/posts/subject/?subject=7" title="查看有关 地理 的所有文章">地理</a>
               </li>
-              <li class="cat-item cat-item-46"><a href="http://www.zqhgzx.com/?cat=46" title="查看 政治 下的所有文章">政治</a>
+              <li class="cat-item cat-item-46"><a href="/posts/subject/?subject=8" title="查看有关 政治 的所有文章">政治</a>
               </li>
-              <li class="cat-item cat-item-54"><a href="http://www.zqhgzx.com/?cat=54" title="查看 历史 下的所有文章">历史</a>
+              <li class="cat-item cat-item-54"><a href="/posts/subject/?subject=9" title="查看有关 历史 的所有文章">历史</a>
               </li>
-            </ul></li>    </ul>
+              <li class="cat-item cat-item-supplementary"><a href="/posts/subject/?subject=10" title="查看有关 教辅 的所有文章">教辅</a>
+              </li>
+              <li class="cat-item cat-item-it"><a href="/posts/subject/?subject=11" title="查看有关 信息技术 的所有文章">信息技术</a>
+              </li>
+              <li class="cat-item cat-item-38"><a href="/posts/subject/?subject=12" title="查看有关 体育 的所有文章">体育</a>
+              </li>
+              <li class="cat-item cat-item-33"><a href="/posts/subject/?subject=13" title="查看有关 美术 的所有文章">美术</a>
+              </li>
+              <li class="cat-item cat-item-music"><a href="/posts/subject/?subject=14" title="查看有关 音乐 的所有文章">音乐</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
         <ul id="cate-list-grade">
-          <li class="categories"><h3>级组管理</h3><ul>	<li class="cat-item cat-item-35"><a href="http://www.zqhgzx.com/?cat=35" title="查看 七年级 下的所有文章">七年级</a>
+          <li class="categories"><h3>公会小组</h3><ul>	<li class="cat-item cat-item-35"><a href="/posts/grade/?grade=7" title="查看有关 七年级 的所有文章">七年级</a>
               </li>
-              <li class="cat-item cat-item-37"><a href="http://www.zqhgzx.com/?cat=37" title="查看 八年级 下的所有文章">八年级</a>
+              <li class="cat-item cat-item-37"><a href="/posts/grade/?grade=8" title="查看有关 八年级 的所有文章">八年级</a>
               </li>
-              <li class="cat-item cat-item-39"><a href="http://www.zqhgzx.com/?cat=39" title="查看 九年级 下的所有文章">九年级</a>
+              <li class="cat-item cat-item-39"><a href="/posts/grade/?grade=9" title="查看有关 九年级 的所有文章">九年级</a>
               </li>
-            </ul></li>    </ul>
+              <li class="cat-item cat-item-school-bus"><a href="/posts/grade/?grade=13" title="查看有关 后勤 的所有文章">后勤</a>
+              </li>
+            </ul>
+          </li>    
+        </ul>
+
         <ul id="cate-list-league">
-          <li class="categories"><h3>社团组织</h3><ul>	<li class="cat-item cat-item-33"><a href="http://www.zqhgzx.com/?cat=33" title="查看 音乐美术部 下的所有文章">音乐美术部</a>
+          <li class="categories"><h3>社团组织</h3><ul>	<li class="cat-item cat-item-33"><a href="/posts/org/?org_id=1" title="查看 音乐美术部 下的所有文章">音乐美术部</a>
               </li>
-              <li class="cat-item cat-item-38"><a href="http://www.zqhgzx.com/?cat=38" title="查看 体育俱乐部 下的所有文章">体育俱乐部</a>
+              <li class="cat-item cat-item-38"><a href="/posts/org/?org_id=2" title="查看 体育俱乐部 下的所有文章">体育俱乐部</a>
               </li>
-              <li class="cat-item cat-item-75"><a href="http://www.zqhgzx.com/?cat=75" title="查看 科普小组 下的所有文章">科普小组</a>
+              <li class="cat-item cat-item-75"><a href="/posts/org/?org_id=3" title="查看 科普小组 下的所有文章">科普小组</a>
               </li>
-            </ul></li>    </ul>
-        <ul id="cate-list-administrative">
-          <li class="categories"><h3>行政管理</h3><ul>	<li class="cat-item cat-item-44"><a href="http://www.zqhgzx.com/?cat=44" title="查看 团委 下的所有文章">团委</a>
-              </li>
-              <li class="cat-item cat-item-53"><a href="http://www.zqhgzx.com/?cat=53" title="查看 总务处 下的所有文章">总务处</a>
-              </li>
-              <li class="cat-item cat-item-57"><a href="http://www.zqhgzx.com/?cat=57" title="查看 教务处 下的所有文章">教务处</a>
-              </li>
-              <li class="cat-item cat-item-65"><a href="http://www.zqhgzx.com/?cat=65" title="查看 校长室 下的所有文章">校长室</a>
-              </li>
-              <li class="cat-item cat-item-76"><a href="http://www.zqhgzx.com/?cat=76" title="查看 德育处 下的所有文章">德育处</a>
-              </li>
-            </ul></li>    </ul>
-      </div-->
+            </ul>
+          </li>    
+        </ul>
+
+      </div>
       <div id="footer">
         <div id="copyright">
-          Copyright © 2012 www.zqhgzx.com 版权所有
+          Copyright © <%= DateTime.now.strftime("%Y") %> www.zqhgzx.com 版权所有
         </div>
         <div id="powerby">
           <span>技术支持：</span><span class="supertone">肇庆市端州区洲佰通科技有限公司 </span><span>电话：0758-6168899 </span><span>邮箱：supertone@126.com</span>

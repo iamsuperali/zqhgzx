@@ -1,5 +1,5 @@
 <%
-posts = Post.find(:all,
+posts = Post.approved.find(:all,
   :joins => :category,
   :conditions => ["categories.id = ? or categories.parent_id = ? ",category_id,category_id],
   :limit => limit

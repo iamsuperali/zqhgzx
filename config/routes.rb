@@ -24,6 +24,9 @@ FishCms::Application.routes.draw do
       get :wait_for_be_approved
       get :upload_xml
       post :import
+      get :subject
+      get :org
+      get :grade
     end
 
     post :approve, :on => :member

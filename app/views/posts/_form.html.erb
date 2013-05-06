@@ -41,8 +41,6 @@
       <%= f.select(:org_id,org_list,:include_blank=>"无") %>
     </div>
     <div style="padding:5px;">
-      <%= f.label "允许评论" %>
-      <%= f.select(:comment_status,comment_status_list) %>
 
       <%= f.label "访问权限" %>
       <%= f.select(:status,permit_list) %>

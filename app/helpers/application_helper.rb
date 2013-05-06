@@ -81,7 +81,7 @@ module ApplicationHelper
   end
   
   def hot_posts
-    return Post.find(:all,:limit=>5,:order=>"hit desc")
+    return Post.approved.find(:all,:limit=>5,:order=>"hit desc")
   end
 
   def get_posts(category_id = nil)

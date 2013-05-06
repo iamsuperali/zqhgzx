@@ -167,7 +167,7 @@ class PostsController < ApplicationController
         end 
       when "author"
         @result << ["作者","统计"]
-        Post.select("author,count(id) as 'count'").group("author").each do |r|
+        Post.select("author,count(id) as 'count'").where(:created_at =>@times[0]..@times[1]).group("author").each do |r|
           @result << [r.author,r.count]
         end 
       end
@@ -245,6 +245,31 @@ class PostsController < ApplicationController
     end
 
   end
+  
+  def subject
+    @posts = Post.approved.where("subject = ?",params[:subject]).paginate(
+      :page => params[:page], 
+      :per_page =>20)
+    
+    render :template=>"/home/search",:layout=>"application"
+  end
+  
+  def org
+    @posts = Post.approved.where("org_id = ?",params[:org_id]).paginate(
+      :page => params[:page], 
+      :per_page =>20)
+    
+    render :template=>"/home/search",:layout=>"application"
+  end
+  
+  def grade
+    @posts = Post.approved.where("grade = ?",params[:grade]).paginate(
+      :page => params[:page], 
+      :per_page =>20)
+    
+    render :template=>"/home/search",:layout=>"application"
+  end
+  
   
   protected
   
