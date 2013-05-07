@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-    @posts = Post.paginate(
+    @posts = Post.approved.paginate(
       :joins => :category,
       :conditions => ["categories.id = ? or categories.parent_id = ? ",params[:id],params[:id]],
       :page => params[:page], :per_page =>20)

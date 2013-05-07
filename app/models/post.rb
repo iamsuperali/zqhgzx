@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   before_create :auto_approve_when_admin
   has_many :uploads,:dependent => :destroy
   default_scope order('created_at DESC')
-  scope :approved,where("approved = 1")
+  scope :approved,where(:approved => true)
   
   GRADE_LIST = [["七年级",7],["八年级",8],["九年级",9],["后勤",13]]
   ORG_LIST = [["音乐美术部",1],["体育俱乐部",2],["科普小组",3]]
