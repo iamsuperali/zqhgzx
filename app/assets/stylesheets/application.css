@@ -13,6 +13,8 @@
  *= require ./paginate
  *= require ./bjqs
  *= require ./tips
- */
+*/
 
- 
+#nav-wrapper ul li{
+    display: block;
+}
