@@ -8,18 +8,20 @@ class EventsController < ApplicationController
     
     if params[:event]
       event_queries = {}
-      user_queries = {}
+      # user_queries = {}
       if !params[:event][:start_at].blank? && !params[:event][:end_at].blank?
         start_time = params[:event][:start_at] + " 00:00:00"
         end_time = params[:event][:end_at] + " 23:59:59"
         event_queries.merge!(:created_at=>start_time..end_time)
       end
-      user_queries.merge!({:real_name=>params[:event][:real_name]}) if !params[:event][:real_name].blank?
-      user_queries.merge!({:subject=>params[:event][:subject]}) if !params[:event][:subject].blank?
-      user_queries.merge!({:grade=>params[:event][:grade]}) if !params[:event][:grade].blank?
+
+      event_queries.merge!({:applicant=>params[:event][:applicant]}) if !params[:event][:applicant].blank?
+      # user_queries.merge!({:real_name=>params[:event][:real_name]}) if !params[:event][:real_name].blank?
+      # user_queries.merge!({:subject=>params[:event][:subject]}) if !params[:event][:subject].blank?
+      # user_queries.merge!({:grade=>params[:event][:grade]}) if !params[:event][:grade].blank?
     
-      @events = Event.includes(:user).where(
-        :users=>user_queries,
+      @events = Event.where(
+        # :users=>user_queries,
         :events=>event_queries
       ).paginate(
         :page => params[:page],

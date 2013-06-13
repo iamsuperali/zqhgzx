@@ -18,10 +18,12 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= f.label :user_id,"教职工姓名" %>
-    <%= collection_select(:event, :user_id, User.staff.all, :id, :real_name) %>
+    <%= f.label :applicant,"申请人" %>
+    <%= f.text_field :applicant %>
   </div>
+
   <div class="field">
     <%= f.label :cate,"考勤类别" %>
     <%= f.select(:cate,event_cate_list) %>

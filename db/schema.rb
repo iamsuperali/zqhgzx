@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221104105) do
+ActiveRecord::Schema.define(:version => 20130612142033) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20130221104105) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "events", :force => true do |t|
-    t.integer  "user_id"
     t.integer  "cate"
     t.date     "start_at"
     t.date     "end_at"
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130221104105) do
     t.string   "remark"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "applicant"
   end
 
   create_table "links", :force => true do |t|
