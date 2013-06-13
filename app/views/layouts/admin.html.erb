@@ -30,14 +30,17 @@
                 <li><a href="/users?approved=false">账号审批</a></li>
               </ul>
             </li>
-            <li><a  id="events-link" href="/events">考勤管理</a>
-              <ul>
-                <li><a href="/events/new">新增考勤记录</a></li>
-                <li><a href="/events">考勤查询</a></li>
-              </ul>
-            </li>
-          <li><a id="links-link" href="/links">友情链接管理</a></li>
-          <%end%> 
+
+            <li><a id="links-link" href="/links">友情链接管理</a></li>
+          <%end%>
+
+          <li>
+            <a  id="events-link" href="/events">考勤管理</a>
+            <ul>
+              <li><a href="/events/new">新增考勤记录</a></li>
+              <li><a href="/events">考勤查询</a></li>
+            </ul>
+          </li>
 
           <li>
             <%= link_to "修改密码", edit_user_registration_path,:id=>"pwd_link"  %>

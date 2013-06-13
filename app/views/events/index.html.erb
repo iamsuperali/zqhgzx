@@ -32,12 +32,12 @@
     <tr>
       <td  scope="row"class="spec"><%= event.applicant %></td>
       <td><%= format_event_cate(event.cate) %></td>
-      <td><%= event.start_at.strftime("%y-%m-%d") %>第<%= event.start_node %>节</td>
-      <td><%= event.end_at.strftime("%y-%m-%d") %>第<%= event.end_node %>节</td>
+      <td><%= event.start_at.strftime("%Y-%m-%d") %>第<%= event.start_node %>节</td>
+      <td><%= event.end_at.strftime("%Y-%m-%d") %>第<%= event.end_node %>节</td>
       <td><%= event.recorder.real_name %></td>
       <td><%= event.examiner.real_name %></td>
       <td><%= event.remark %></td>
-      <td><%= event.created_at.strftime("%y-%m-%d  %I:%M%p") %></td>
+      <td><%= event.created_at.strftime("%Y-%m-%d  %I:%M%p") %></td>
       <td><%= link_to '修改', edit_event_path(event) %></td>
       <td><%= link_to '删除', event, method: :delete, data: { confirm: '你确定?' } %></td>
     </tr>
