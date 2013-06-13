@@ -10,6 +10,10 @@
   g.column  :name => '发表人',:model => 'User',:attribute => 'real_name',:custom_filter=>:auto do |post|
     post.user.real_name if post.user
   end
+  
+  g.column  :name => '发表时间', :attribute => 'created_at' do |post|
+    post.created_at.strftime("%Y-%m-%d") 
+  end
 
   g.column  :name => '审批', :attribute => 'approved' do |post|
     post.approved? ? '是' : '否'

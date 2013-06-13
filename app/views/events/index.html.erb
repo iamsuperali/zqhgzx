@@ -9,9 +9,9 @@
   <%=form_tag('/events', :method =>"get")%>
   开始日期:<input type="text" id="event_start_at" name="event[start_at]" />
   结束日期:<input type="text" id="event_end_at" name="event[end_at]" />
-  姓名：<input type="text" id="event_applicant" name="event[applicant]" />
- <!--  科组：<%= select(:event,:subject,subject_list,:include_blank=>"") %>
-  级组：<%= select(:event,:grade,grade_list,:include_blank=>"") %> -->
+  申请人：<input type="text" id="event_applicant" name="event[applicant]" />
+  <!--  科组：<%= select(:event,:subject,subject_list,:include_blank=>"") %>
+   级组：<%= select(:event,:grade,grade_list,:include_blank=>"") %> -->
   <div><%= submit_tag '确定' %></div>
 </form>
 </fieldset>

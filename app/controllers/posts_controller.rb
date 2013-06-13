@@ -9,7 +9,9 @@ class PostsController < ApplicationController
   def index
     @posts_grid = initialize_grid(Post,
       :include => [:category,:user],
-      :per_page => 10)
+      :per_page => 10,
+      :order=>"id",
+      :order_direction => 'desc')
   end
 
   # GET /posts/1

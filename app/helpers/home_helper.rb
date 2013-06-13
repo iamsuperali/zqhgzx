@@ -1,6 +1,10 @@
 #coding: utf-8
 module HomeHelper
-  def generate_slider(posts)
+  def generate_slider(category_id)
+    posts = Post.includes(:uploads,:category).where(
+      "uploads.upload_content_type like 'image%' and (categories.id = ? or categories.parent_id = ?)",category_id,category_id
+    ).order("posts.id desc").limit(5)
+    
     return_string = ""
     posts.each do |p|
       if p.uploads.length > 0

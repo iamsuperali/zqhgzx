@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   has_attached_file :attachment
   before_create :auto_approve_when_admin
   has_many :uploads,:dependent => :destroy
-  default_scope order('created_at DESC')
+  default_scope order('posts.created_at DESC')
   scope :approved,where(:approved => true)
   
   GRADE_LIST = [["七年级",7],["八年级",8],["九年级",9],["后勤",13]]

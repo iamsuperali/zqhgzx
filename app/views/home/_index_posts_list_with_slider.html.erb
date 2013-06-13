@@ -24,7 +24,7 @@ posts = Post.approved.find(:all,
 
   <div id="cate<%=category_id%>" class="index-slide">
     <ul class="bjqs">
-      <%=generate_slider(posts)%>
+      <%=generate_slider(category_id)%>
     </ul>
   </div>
 
