@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
   has_many :login_logs,:dependent => :destroy
-  has_many :events,:dependent => :destroy
+#  has_many :events,:dependent => :destroy
   has_many :records,:class_name => "Event", :foreign_key => "created_by",:dependent => :destroy
   has_many :authorize,:class_name => "Event", :foreign_key => "approved_by",:dependent => :destroy
 
