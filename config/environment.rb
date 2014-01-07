@@ -13,3 +13,5 @@ ActionMailer::Base.smtp_settings = {
   :user_name      => "fishcms@163.com",
   :password       => "13602953927"
 }
+
+

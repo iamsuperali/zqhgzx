@@ -124,7 +124,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(:approved=>true)
-        format.html { redirect_to posts_url, notice: '文章审批成功。' }
+        format.html { redirect_to "/posts/wait_for_be_approved", notice: '文章审批成功。' }
         format.json { head :no_content }
       else
         format.html { render action: "approve" }

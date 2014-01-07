@@ -2,6 +2,18 @@
   $(function() {
     $( "#event_start_at" ).datepicker();
     $( "#event_end_at" ).datepicker();
+    
+    var availableTags = [
+<%User.staff.each do |u|%>
+  <%="\"#{u.real_name}\",".html_safe%>
+<%end%>      
+      ""
+    ];
+    
+    $( "#event_applicant" ).autocomplete({
+      source: availableTags
+    });
+    
   });
 </script>
 
@@ -11,9 +23,9 @@
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>

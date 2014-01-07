@@ -8,8 +8,8 @@
 <fieldset>
   <legend><h3>选择统计时间段</h3></legend>
   <%=form_tag('/posts/period', :method =>"get")%>
-  开始日期:<input type="text" id="start" name="post[start]" />
-  结束日期:<input type="text" id="end" name="post[end]" />
+  开始日期:<input type="text" id="start" name="post[start]" <%= "value=#{params[:post][:start]}" if params[:post] %> />
+  结束日期:<input type="text" id="end" name="post[end]" <%= "value=#{params[:post][:end]}" if params[:post] %> />
   统计条件：<select name="condition">
     <option value="">请选择..</option>
     <option value="org">科组</option>

@@ -2,13 +2,25 @@
   $(function() {
     $( "#event_start_at" ).datepicker();
     $( "#event_end_at" ).datepicker();
+    
+    var availableTags = [
+      <%User.staff.each do |u|%>
+            <%="\"#{u.real_name}\",".html_safe%>
+      <%end%>      
+      ""
+    ];
+    
+    $( "#event_applicant" ).autocomplete({
+      source: availableTags
+    });
+    
   });
 </script>
 <fieldset>
   <legend><h1>考勤记录查询</h1></legend>
   <%=form_tag('/events', :method =>"get")%>
-  开始日期:<input type="text" id="event_start_at" name="event[start_at]" />
-  结束日期:<input type="text" id="event_end_at" name="event[end_at]" />
+  开始日期:<input type="text" id="event_start_at" name="event[start_at]" <%= "value=#{params[:event][:start_at]}" if params[:event] %> />
+  结束日期:<input type="text" id="event_end_at" name="event[end_at]" <%= "value=#{params[:event][:end_at]}" if params[:event] %> />
   申请人：<input type="text" id="event_applicant" name="event[applicant]" />
   <!--  科组：<%= select(:event,:subject,subject_list,:include_blank=>"") %>
    级组：<%= select(:event,:grade,grade_list,:include_blank=>"") %> -->
