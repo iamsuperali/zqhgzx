@@ -11,12 +11,13 @@ posts = Post.approved.find(:all,
   <ul class="index-posts-narrow">
     <%posts.each do |p|%>
       <li class="cat-post-item">
-        <%=link_to p.title,p,:class=>"textcut15",:target=>"_blank"%>
+
+        <%=link_to p.title,p,:class=>"textcut14",:target=>"_blank"%>
+        <% if islock(p) %>
+          <span class="lock"></span>
+        <% end %>
         <span class="post-date"><%=p.created_at.strftime("%Y-%m-%d")%></span>
       </li>
-      <% if islock(p) %>
-        <span class="lock"></span>
-      <% end %>
     <%end%>
     <% if  posts.length == limit %>
       <li class="more"><a href="/categories/<%=category_id%>">更多...</a></li>
